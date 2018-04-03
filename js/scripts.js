@@ -1,16 +1,19 @@
 //business logic
-function Ticket(movieName, time) {
+function Ticket(movieName, time, age) {
   this.movieName = movieName;
   this.movieTime = time;
+  this.age = age;
 }
 
 Ticket.prototype.getPrice = function()  {
   var price = [];
-  if (this.movieName==="acrimony"){
+  if (this.age > 17 && this.age < 22) {
+    price.push("5$")
+  } else if (this.movieName==="acrimony"){
     if (this.movieTime < 6) {
-      price.push("10$");
+      price.push("25$");
     } else {
-      price.push("20$");
+      price.push("35$");
     }
   } else if (this.movieName==="midSun") {
     if (this.movieTime < 6) {
@@ -49,6 +52,7 @@ $(document).ready(function() {
     $("#pacRim").toggle();
     $("#rpo").toggle();
     $(".acrimonyRadio").toggle();
+    $("#input-age").toggle();
   });
 
   $("#midSun").click(function() {
@@ -58,6 +62,7 @@ $(document).ready(function() {
     $("#pacRim").toggle();
     $("#rpo").toggle();
     $(".midSunRadio").toggle();
+    $("#input-age").toggle();
   });
 
   $("#pacRim").click(function() {
@@ -67,6 +72,7 @@ $(document).ready(function() {
     $("#midSun").toggle();
     $("#rpo").toggle();
     $(".pacRimRadio").toggle();
+    $("#input-age").toggle();
   });
 
   $("#rpo").click(function() {
@@ -76,19 +82,21 @@ $(document).ready(function() {
     $("#midSun").toggle();
     $("#pacRim").toggle();
     $(".rpoRadio").toggle();
+    $("#input-age").toggle();
   });
 
   $("form#movie-ticket").submit(function(event) {
     event.preventDefault();
 
     var inputValue = $("input:radio[name=exampleRadios]:checked").val();
+    var inputAge = parseInt($("#age").val());
     $("p#ticket-output").text("");
 
     if(inputValue){
       var movieName = inputValue.slice(0,-1);
       var movieTime = inputValue.slice(-1);
 
-      var newTicket = new Ticket(movieName,movieTime);
+      var newTicket = new Ticket(movieName,movieTime,inputAge);
 
       var ticketPrice = newTicket.getPrice();
 

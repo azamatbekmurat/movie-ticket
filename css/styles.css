@@ -16,3 +16,11 @@
 .rpoRadio{
   display:none;
 }
+
+#input-age {
+  display: none;
+  max-width: 150px;
+  font-size: 25px;
+  color: blue;
+  font-weight: bolder;
+}

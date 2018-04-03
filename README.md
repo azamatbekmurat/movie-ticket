@@ -6,7 +6,7 @@
 
 ## Description
 
-This webpage where a user can select the name of a movie, the time they would like to see the movie, and at output there will be output with calculated price of the ticket
+This webpage where a user can select the name of a movie, the time they would like to see the movie, the age, and at output with calculated price of the ticket
 
 ## Setup/Installation Requirements
 
