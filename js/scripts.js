@@ -31,6 +31,44 @@ Ticket.prototype.ticketPrint = function() {
 }
 
 $(document).ready(function() {
+
+  $("#acrimony").click(function() {
+    var movieTitle="Tyler Perry's Acrimony";
+    $("#midSun").toggle();
+    $("#pacRim").toggle();
+    $("#rpo").toggle();
+    $(".acrimonyRadio").toggle();
+  });
+
+  $("#midSun").click(function() {
+    var movieTitle="Midnight Sun";
+    console.log(movieTitle);
+    $("#acrimony").toggle();
+    $("#pacRim").toggle();
+    $("#rpo").toggle();
+    $(".midSunRadio").toggle();
+  });
+
+  $("#pacRim").click(function() {
+    var movieTitle="Pacific Rim";
+    console.log(movieTitle);
+    $("#acrimony").toggle();
+    $("#midSun").toggle();
+    $("#rpo").toggle();
+    $(".pacRimRadio").toggle();
+  });
+
+  $("#rpo").click(function() {
+    var movieTitle="Ready Player One";
+    console.log(movieTitle);
+    $("#acrimony").toggle();
+    $("#midSun").toggle();
+    $("#pacRim").toggle();
+    $(".rpoRadio").toggle();
+  });
+
+
+
   $("form#movie-ticket").submit(function(event) {
     event.preventDefault();
 
@@ -42,7 +80,9 @@ $(document).ready(function() {
 
     var ticketPrice = newTicket.getPrice();
 
-    $("ul#ticket-output").append("<li><span class='ticket'>" + newTicket.ticketPrint() + ", " + ticketPrice +  "</span></li>");
+    $("p#ticket-output").append("<span class='ticket'>" + newTicket.ticketPrint() + ", " + ticketPrice +  "</span>");
 
   });
+
+
 });
