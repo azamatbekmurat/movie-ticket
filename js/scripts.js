@@ -1,9 +1,7 @@
-
+//business logic
 function Ticket(movieName, time) {
   this.movieName = movieName;
   this.movieTime = time;
-  // this.movieTime = time;
-  // this.discount = discount;
 }
 
 Ticket.prototype.getPrice = function()  {
@@ -14,11 +12,23 @@ Ticket.prototype.getPrice = function()  {
     } else {
       price.push("20$");
     }
-  } else if (this.movieName==="midSun$") {
+  } else if (this.movieName==="midSun") {
     if (this.movieTime < 6) {
-      price.push("30$");
+      price.push("10$");
     } else {
-      price.push("40$");
+      price.push("20$");
+    }
+  } else if (this.movieName==="pacificRim") {
+    if (this.movieTime < 6) {
+      price.push("10$");
+    } else {
+      price.push("20$");
+    }
+  }else if (this.movieName==="ReadyPlayerOne") {
+    if (this.movieTime < 6) {
+      price.push("10$");
+    } else {
+      price.push("20$");
     }
   } else {
     return "wrong input";
@@ -27,9 +37,10 @@ Ticket.prototype.getPrice = function()  {
 }
 
 Ticket.prototype.ticketPrint = function() {
-  return this.movieName + ", " + this.movieTime;
+  return this.movieName + ", at " + this.movieTime + "pm";
 }
 
+//user interface logic
 $(document).ready(function() {
 
   $("#acrimony").click(function() {
@@ -67,22 +78,23 @@ $(document).ready(function() {
     $(".rpoRadio").toggle();
   });
 
-
-
   $("form#movie-ticket").submit(function(event) {
     event.preventDefault();
 
     var inputValue = $("input:radio[name=exampleRadios]:checked").val();
-    var movieName = inputValue.slice(0,-1);
-    var movieTime = inputValue.slice(-1);
+    $("p#ticket-output").text("");
 
-    var newTicket = new Ticket(movieName,movieTime);
+    if(inputValue){
+      var movieName = inputValue.slice(0,-1);
+      var movieTime = inputValue.slice(-1);
 
-    var ticketPrice = newTicket.getPrice();
+      var newTicket = new Ticket(movieName,movieTime);
 
-    $("p#ticket-output").append("<span class='ticket'>" + newTicket.ticketPrint() + ", " + ticketPrice +  "</span>");
+      var ticketPrice = newTicket.getPrice();
+
+      $("p#ticket-output").append("<span class='ticket'>" + newTicket.ticketPrint() + ", ticket price is: " + ticketPrice +  "</span>");
+    } else{}
 
   });
-
 
 });
